@@ -9,13 +9,26 @@ class WeatherGif extends Component {
       hasData: false,
       src: "",
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
-    await this.getGifSrc(this.props.query);
+    await this.getGifSrc();
   }
 
-  async getGifSrc(query) {
+  componentDidUpdate(prevProps) {
+    if (this.props.query !== prevProps.query) {
+      this.getGifSrc();
+    }
+  }
+
+  async handleClick() {
+    await this.getGifSrc();
+  }
+
+  async getGifSrc() {
+    let query = this.props.query;
     let apiKey = "XglG7Kno2HckkrUjCimsJOv8YE0STATQ";
 
     try {
@@ -33,10 +46,11 @@ class WeatherGif extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <span className="weather-gif">
         {this.state.hasData ? (
-          <img alt="sunny" src={this.state.src} />
+          <img alt="sunny" src={this.state.src} onClick={this.handleClick} />
         ) : (
           <FontAwesomeIcon icon={faSpinner} />
         )}

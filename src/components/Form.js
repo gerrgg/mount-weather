@@ -19,23 +19,21 @@ class Form extends Component {
 
   render() {
     return (
-      <div id="search-location">
-        <form onSubmit={this.props.handleSubmit}>
-          <button type="button">
-            <FontAwesomeIcon icon={faLocationArrow} />
-          </button>
-          <input
-            id="search-bar"
-            type="text"
-            name="query"
-            placeholder="Petoskey, Michigan"
-            onChange={this.handleChange}
-          />
-          <button>
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-        </form>
-      </div>
+      <form onSubmit={this.props.handleSubmit}>
+        <button type="button">
+          <FontAwesomeIcon icon={faLocationArrow} />
+        </button>
+        <input
+          id="search-bar"
+          type="text"
+          name="query"
+          placeholder="Petoskey, Michigan"
+          onChange={this.handleChange}
+        />
+        <button>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </form>
     );
   }
 }

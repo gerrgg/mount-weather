@@ -7,10 +7,6 @@ class WeatherSummary extends Component {
     super();
   }
 
-  getWeatherDescription = () => {
-    return this.props.data.weather[0].description;
-  };
-
   convertTemp = (temp) => {
     let f = ((temp - 273.15) * 9) / 5 + 32;
     return Math.round(f) + "°F";
@@ -19,11 +15,11 @@ class WeatherSummary extends Component {
   render() {
     return (
       <div id="weather-summmary">
-        <WeatherGif query={this.getWeatherDescription()} />
+        <WeatherGif query={this.props.data.weather[0].description} />
         <div className="summary-right">
           <h1>
             {this.convertTemp(this.props.data.main.temp)}{" "}
-            {this.getWeatherDescription()}
+            {this.props.data.weather[0].description}
           </h1>
           <div className="summary-details">
             <WeatherDetailComponent

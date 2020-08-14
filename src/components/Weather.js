@@ -8,9 +8,15 @@ class Weather extends Component {
     super();
     this.state = {
       hasData: false,
+      perferredUnit: "Fahrenheit",
+      query: "", // we need to pass query to the form as a prop
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  async componentDidMount() {
+    await this.getTheWeather();
   }
 
   handleSubmit(event) {
@@ -32,16 +38,14 @@ class Weather extends Component {
     }
   }
 
-  async componentDidMount() {
-    await this.getTheWeather();
-  }
-
   render() {
     console.log(this.state.weather);
 
     return (
       <div id="weather">
-        <Form handleSubmit={this.handleSubmit} />
+        <div id="search-location">
+          <Form handleSubmit={this.handleSubmit} />
+        </div>
         {this.state.hasData ? (
           <div>
             <WeatherDetails data={this.state.weather} />

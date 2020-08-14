@@ -24,7 +24,7 @@ const Header = () => {
           </li>
           <li>
             <a href="/" className="logo">
-              <FontAwesomeIcon icon={faMeteor} style={{ fontSize: "2rem" }} />
+              <FontAwesomeIcon icon={faMeteor} />
               <br></br>
               React to Weather
             </a>
