@@ -1,36 +1,51 @@
-import React, { Component } from 'react'
-import Form from './Form'
+import React, { Component } from "react";
+import Form from "./Form";
+import WeatherDetails from "./WeatherDetails";
 
-class Weather extends Component{
-    constructor( props ){
-        super()
-        this.state = {}
+class Weather extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      hasData: false,
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let query = event.target[1].value;
+    if (query) this.getTheWeather(query);
+  }
+
+  async getTheWeather(query = "Petoskey, US") {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.props.apiKey}`,
+      { mode: "cors" }
+    );
+
+    const weatherData = await response.json();
+
+    if (weatherData.cod !== "404") {
+      this.setState({ weather: weatherData, hasData: true });
     }
+  }
 
-    async componentDidMount(){
+  async componentDidMount() {
+    await this.getTheWeather();
+  }
 
-        const response = await fetch( 
-            'https://api.openweathermap.org/data/2.5/weather?q=Petoskey,US&appid=' + this.props.apiKey,
-            { mode: 'cors' }
-        )
-
-        const weatherData = await response.json()
-
-        console.log( weatherData )
-        this.setState({ weather: weatherData })
-    }
-
-    getWeatherEndpoint(){
-        return 'https://api.openweathermap.org/data/2.5/weather'
-    }
-
-    render(){
-        return(
-            <div className="weather">
-                <Form />
-            </div>
-        )
-    }
+  render() {
+    console.log(this.state.weather);
+    return (
+      <div id="weather">
+        <Form handleSubmit={this.handleSubmit} />
+        {this.state.hasData ? (
+          <WeatherDetails data={this.state.weather} />
+        ) : null}
+      </div>
+    );
+  }
 }
 
-export default Weather
+export default Weather;

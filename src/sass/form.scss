@@ -1,33 +1,33 @@
-@import 'variables';
+@import "variables";
 
-#search-location{
-    background-color: $light-gray;
-    padding: .5rem 0;
+#search-location {
+    background-color: $color-light-gray;
+    padding: 0.5rem 0;
 
-    form{
+    form {
         margin: 0 auto;
         max-width: 600px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
 
-        #search-bar{
+        #search-bar {
             flex-grow: 1;
-            margin: 0 .5rem;
+            margin: 0 0.5rem;
             text-align: center;
             font-size: 1.15rem;
             border-radius: 18px;
             border: 0px;
         }
 
-        button{
+        button {
             padding: 0.25rem 0;
             cursor: pointer;
-            background-color: $med-gray;
+            background-color: $color-med-gray;
             border: 0;
 
-            svg{
-                padding: 0 .5rem;
+            svg {
+                padding: 0 0.5rem;
             }
         }
     }

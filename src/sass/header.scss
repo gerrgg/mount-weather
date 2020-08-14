@@ -1,33 +1,33 @@
-@import 'variables';
+@import "variables";
 
-header{
+header {
     background-color: $color-dark;
 
-    .logo{
+    .logo {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    
-    nav{
+
+    nav {
         max-width: 600px;
         margin: 0 auto;
         padding: 1rem;
 
-        ul{
+        ul {
             padding: 0;
-            display:flex;
+            display: flex;
             justify-content: space-evenly;
             align-items: flex-end;
             margin: 0;
             list-style: none;
 
-            li{
-                a{
+            li {
+                a {
                     color: $color-light;
                     text-decoration: none;
 
-                    svg{
+                    svg {
                         color: $color-main;
                     }
                 }
