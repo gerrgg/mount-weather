@@ -29,7 +29,7 @@ class WeatherGif extends Component {
 
   async getGifSrc() {
     let query = this.props.query;
-    let apiKey = "XglG7Kno2HckkrUjCimsJOv8YE0STATQ";
+    let apiKey = process.env.REACT_APP_GIPHY_KEY;
 
     try {
       const response = await fetch(
