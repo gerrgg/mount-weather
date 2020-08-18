@@ -46,7 +46,7 @@ class WeatherGif extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.query);
     return (
       <span className="weather-gif">
         {this.state.hasData ? (

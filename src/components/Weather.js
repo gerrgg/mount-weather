@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "./Form";
 import WeatherDetails from "./WeatherDetails";
 import WeatherSummary from "./WeatherSummary";
+import WeatherMap from "./WeatherMap";
 
 class Weather extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Weather extends Component {
     this.state = {
       hasData: false,
       perferredUnit: "Fahrenheit",
-      query: "", // we need to pass query to the form as a prop
+      query: "typing", // we need to pass query to the form as a prop
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,6 +51,10 @@ class Weather extends Component {
           <div>
             <WeatherDetails data={this.state.weather} />
             <WeatherSummary data={this.state.weather} />
+            <WeatherMap
+              lat={this.state.weather.coord.lat}
+              lon={this.state.weather.coord.lon}
+            />
           </div>
         ) : null}
       </div>
