@@ -27,7 +27,7 @@ class Form extends Component {
           id="search-bar"
           type="text"
           name="query"
-          placeholder="Petoskey, Michigan"
+          placeholder={this.props.query}
           onChange={this.handleChange}
         />
         <button>

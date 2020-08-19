@@ -6,11 +6,10 @@ import WeatherMap from "./WeatherMap";
 
 class Weather extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       hasData: false,
       perferredUnit: "Fahrenheit",
-      query: "typing", // we need to pass query to the form as a prop
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,31 +20,56 @@ class Weather extends Component {
   }
 
   handleSubmit(event) {
+    /**
+     * Change query on form submit
+     */
     event.preventDefault();
     let query = event.target[1].value;
-    if (query) this.getTheWeather(query);
+    if (query.length) this.getTheWeather(query);
   }
 
-  async getTheWeather(query = "Petoskey, MI, US") {
+  async getCurrentWeather(query) {
+    /**
+     * Get current weather data from OWM
+     */
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.props.apiKey}`,
       { mode: "cors" }
     );
 
-    const weatherData = await response.json();
+    return await response.json();
+  }
 
-    if (weatherData.cod !== "404") {
-      this.setState({ weather: weatherData, hasData: true });
-    }
+  async getFiveDayForecast(query) {
+    /**
+     * Get five day forcast weather data from OWM
+     */
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${this.props.apiKey}`,
+      { mode: "cors" }
+    );
+
+    return await response.json();
+  }
+
+  async getTheWeather(query = this.props.query) {
+    let weatherData = await this.getCurrentWeather(query);
+    let forecast = await this.getFiveDayForecast(query);
+
+    this.setState({
+      weather: weatherData,
+      forecast: forecast,
+      hasData: true,
+    });
   }
 
   render() {
-    console.log(this.state.weather);
+    console.log(this.state);
 
     return (
       <div id="weather">
         <div id="search-location">
-          <Form handleSubmit={this.handleSubmit} />
+          <Form handleSubmit={this.handleSubmit} query={this.props.query} />
         </div>
         {this.state.hasData ? (
           <div>
