@@ -74,10 +74,10 @@ class Weather extends Component {
           <div>
             <WeatherDetails data={this.state.weather} />
             <WeatherSummary data={this.state.weather} />
-            {/* <WeatherMap
+            <WeatherMap
               lat={this.state.weather.coord.lat}
               lon={this.state.weather.coord.lon}
-            /> */}
+            />
             <WeatherForecast forecast={this.state.forecast} />
           </div>
         ) : null}

@@ -8,9 +8,9 @@ A simple weather app built with React - using the OpenWeatherMap API.
 
 ### Todo
 
-- Integrate form with Google Autocomplete for Addresses - https://developers.google.com/maps/documentation/javascript/places-autocomplete
+- Use an address lookup api to convert a query to a lon/lat so we pull current weather from the one-call api
 - Show 7 day forcast with collapsible inforation.
-- Integrate map with weather tile layer (might be too hard)
+- Integrate map with weather tile layer
 
 #### The Odin Project
 
