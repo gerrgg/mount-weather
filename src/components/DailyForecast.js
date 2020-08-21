@@ -51,6 +51,7 @@ class DailyForecast extends Component {
       <div className="daily-forecast" onClick={this.handleClick}>
         <div className="inner">
           <WeatherBrief
+            index={this.props.index}
             weather={this.props.today.weather[0]}
             timestamp={this.props.today.dt}
           />
