@@ -65,6 +65,7 @@ class Weather extends Component {
   }
 
   render() {
+    console.log(this.state.forecast);
     return (
       <div id="weather">
         <div id="search-location">

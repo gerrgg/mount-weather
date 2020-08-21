@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlusCircle,
+  faMinusCircle,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import convertTemp from "./Helpers";
+import WeatherDetails from "./WeatherDetails";
 
 class DailyForecast extends Component {
   constructor(props) {
@@ -42,6 +47,7 @@ class DailyForecast extends Component {
 
   render() {
     let width = this.calculateWidth(this.props.today.temp, this.props.range);
+
     let padding = this.calculateLeftPadding(
       this.props.today.temp,
       this.props.range
@@ -77,9 +83,21 @@ class DailyForecast extends Component {
 }
 
 const DailyDetails = (props) => {
+  const getDescription = () => props.today.weather[0].description;
+  const getMinTemp = () => convertTemp(props.today.temp.morn) + " 6am";
+  const getMaxTemp = () => convertTemp(props.today.temp.day) + " 3pm";
+
+  console.log(props);
   return (
     <div className={`daily-details ${props.expanded ? "expanded" : ""}`}>
-      Details
+      <h4 className="description">{getDescription()}</h4>
+      <div>
+        <span className="sunrise-sunset">
+          {getMinTemp()}
+          {<FontAwesomeIcon icon={faArrowRight} />}
+          {getMaxTemp()}
+        </span>
+      </div>
     </div>
   );
 };
