@@ -1,5 +1,5 @@
 import React from "react";
-import convertTemp from "./Helpers";
+import { convertTemp } from "./Helpers";
 
 const WeatherRange = (props) => {
   return (

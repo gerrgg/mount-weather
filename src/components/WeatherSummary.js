@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import convertTemp from "./Helpers";
+import { convertTemp } from "./Helpers";
 import WeatherGif from "./WeatherGif";
 import WeatherDetailComponent from "./WeatherDetailComponent";
 

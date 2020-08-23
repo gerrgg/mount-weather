@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
-import convertTemp from "./Helpers";
+import { convertTemp } from "./Helpers";
 import WeatherRange from "./WeatherRange";
 import WeatherBrief from "./WeatherBrief";
 import DailyForecastWeatherDetails from "./DailyForecastWeatherDetails";
