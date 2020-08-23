@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlusCircle,
-  faMinusCircle,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import moment from "moment";
+import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import convertTemp from "./Helpers";
-import WeatherDetails from "./WeatherDetails";
+import WeatherRange from "./WeatherRange";
+import WeatherBrief from "./WeatherBrief";
+import DailyForecastWeatherDetails from "./DailyForecastWeatherDetails";
 
 class DailyForecast extends Component {
   constructor(props) {
@@ -76,61 +73,13 @@ class DailyForecast extends Component {
           )}
         </div>
 
-        <DailyDetails today={this.props.today} expanded={this.state.expanded} />
+        <DailyForecastWeatherDetails
+          today={this.props.today}
+          expanded={this.state.expanded}
+        />
       </div>
     );
   }
 }
-
-const DailyDetails = (props) => {
-  const getDescription = () => props.today.weather[0].description;
-  const getMinTemp = () => convertTemp(props.today.temp.morn) + " 6am";
-  const getMaxTemp = () => convertTemp(props.today.temp.day) + " 3pm";
-
-  console.log(props);
-  return (
-    <div className={`daily-details ${props.expanded ? "expanded" : ""}`}>
-      <h4 className="description">{getDescription()}</h4>
-      <div>
-        <span className="sunrise-sunset">
-          {getMinTemp()}
-          {<FontAwesomeIcon icon={faArrowRight} />}
-          {getMaxTemp()}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const WeatherBrief = (props) => {
-  const getWeatherIcon = (icon) =>
-    `http://openweathermap.org/img/wn/${icon}.png`;
-
-  const getDayOfWeek = (timestamp) => moment(timestamp * 1000).format("ddd");
-
-  return (
-    <div className="brief">
-      <img
-        alt={props.weather.description}
-        src={getWeatherIcon(props.weather.icon)}
-      />
-      <span>{props.index !== 0 ? getDayOfWeek(props.timestamp) : "Today"}</span>
-    </div>
-  );
-};
-
-const WeatherRange = (props) => {
-  return (
-    <div className="weather-range">
-      <div className="details" style={{ width: props.width + "%" }}>
-        <span className="min" style={{ paddingLeft: props.padding + "%" }}>
-          {convertTemp(props.min)}
-        </span>
-        <span className="bar"></span>
-        <span className="max">{convertTemp(props.max)}</span>
-      </div>
-    </div>
-  );
-};
 
 export default DailyForecast;
