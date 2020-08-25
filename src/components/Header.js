@@ -2,7 +2,11 @@ import React from "react";
 import "../sass/header.scss";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faCode, faMeteor } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCoffee,
+  faCode,
+  faMountain,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -24,9 +28,9 @@ const Header = () => {
           </li>
           <li>
             <a href="/" className="logo">
-              <FontAwesomeIcon icon={faMeteor} />
+              <FontAwesomeIcon icon={faMountain} />
               <br></br>
-              React to Weather
+              Mount Weather
             </a>
           </li>
           <li>
