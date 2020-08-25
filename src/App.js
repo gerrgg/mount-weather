@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Weather apiKey={process.env.REACT_APP_OWM_KEY} query="Kyoto" />
+      <Weather apiKey={process.env.REACT_APP_OWM_KEY} query="Moscow" />
     </div>
   );
 }

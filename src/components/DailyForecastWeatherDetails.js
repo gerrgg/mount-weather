@@ -29,22 +29,24 @@ const DailyForecastSunRiseSunSet = (props) => {
 const DailyForecastRainFall = (props) => {
   return (
     <div className="rainfall">
-      <span>Rain:</span>
+      <span className="label">Rain:</span>
       <span>{props.rain}</span>
     </div>
   );
 };
 
 const DailyForecastWeatherDetails = (props) => {
-  const getMinTemp = () => convertTemp(props.today.temp.morn) + " 6am";
-  const getMaxTemp = () => convertTemp(props.today.temp.day) + " 3pm";
+  const getMinTemp = () => convertTemp(props.today.temp.min);
+  const getMaxTemp = () => convertTemp(props.today.temp.max);
   const getRainFall = () =>
-    typeof props.today.rain !== "undefined" ? props.today.rain : 0;
+    typeof props.today.rain !== "undefined"
+      ? props.today.rain + " in."
+      : "0 in.";
 
   return (
     <div className={`daily-details ${props.expanded ? "expanded" : ""}`}>
       <h4 className="description">{props.today.weather[0].description}</h4>
-      <div>
+      <div className="daily-details-header">
         <DailyForecastHighAndLow min={getMinTemp()} max={getMaxTemp()} />
         <DailyForecastSunRiseSunSet
           sunrise={getSunRiseOrFall(props.today.sunrise)}
