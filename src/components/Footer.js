@@ -65,7 +65,7 @@ const Footer = () => {
           <li>
             <FontAwesomeIcon icon={faCode} />
             <a
-              href="https://github.com/gerrgg/react-to-weather"
+              href="https://github.com/gerrgg/mount-weather"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -75,20 +75,20 @@ const Footer = () => {
           <li>
             <img
               alt="open weather map logo"
-              src="react-to-weather/open-weather-map-logo-icon.png"
+              src={process.env.PUBLIC_URL + "/open-weather-map-logo-icon.png"}
             />
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://openweathermap.org/api"
             >
-              OpenWeatherMap API{" "}
+              OpenWeatherMap API
             </a>
           </li>
           <li style={{ alignItems: "flex-end" }}>
             <img
               alt="open weather map logo"
-              src="react-to-weather/giphy-icon.png"
+              src={process.env.PUBLIC_URL + "/giphy-icon.png"}
             />
             <a
               target="_blank"
@@ -100,6 +100,9 @@ const Footer = () => {
           </li>
         </div>
       </div>
+      <p className="credits">
+        Built with Love and Coffee - Gregory Bastianelli
+      </p>
     </div>
   );
 };

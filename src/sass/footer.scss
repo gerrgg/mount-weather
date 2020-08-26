@@ -1,6 +1,12 @@
 @import "variables";
 
 #footer {
+  .credits {
+    text-align: center;
+    color: $color-light;
+    font-size: 0.75rem;
+    margin: 0;
+  }
   background-color: $color-dark;
   padding: 1rem;
 

@@ -17,7 +17,7 @@ const Header = () => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/gerrgg/react-to-weather"
+              href="https://github.com/gerrgg/mount-weather"
             >
               <FontAwesomeIcon
                 icon={faCode}
@@ -27,7 +27,7 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a href="/" className="logo">
+            <a href={process.env.PUBLIC_URL} className="logo">
               <FontAwesomeIcon icon={faMountain} />
               <br></br>
               Mount Weather

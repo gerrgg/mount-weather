@@ -1,4 +1,4 @@
-# React to Weather
+# Mount Weather
 
 A simple weather app built with React - using the OpenWeatherMap API.
 
@@ -9,10 +9,11 @@ A simple weather app built with React - using the OpenWeatherMap API.
 ### Todo
 
 - Use an address lookup api to convert a query to a lon/lat so we pull current weather from the one-call api
-- Add a footer with links to inspiration (dark sku), resume, contact, github, and the odin project.
+- Make mobile friendly
+- Alter the head section (title, description, meta stuff)
+- Allow user to switch between the two units of measurement (F & C)
 - Create a 'weather bar' using the hourly data provided by the 'one call'.
 - Integrate map with weather tile layer (thats a tough one).
-- Expose our OWM api keys or find a better place to host the project.
 - Build a nice README.md to show off the project.
 
 #### The Odin Project

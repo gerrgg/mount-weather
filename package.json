@@ -1,8 +1,8 @@
 {
-  "name": "react-to-weather",
+  "name": "mount-weather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gerrgg.github.io/react-to-weather/",
+  "homepage": "https://gerrgg.github.io/mount-weather/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
