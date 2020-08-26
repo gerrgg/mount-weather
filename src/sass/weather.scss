@@ -1,12 +1,16 @@
 @import "variables";
 
 #weather {
+  .content {
+    padding: 0 0.5rem;
+  }
   .wrapper {
     background-color: $color-ultra-light-gray;
     padding: 0.5rem 0;
   }
 
   #weather-details {
+    overflow-x: auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -14,6 +18,11 @@
     padding: 0.25rem 0.5rem;
     max-width: 600px;
     margin: 0 auto;
+
+    @media #{$phone-width} {
+      padding-left: 15rem;
+      height: 2rem;
+    }
 
     .fa-sun {
       color: $color-sun;
@@ -27,6 +36,10 @@
   .detail {
     white-space: nowrap;
     font-size: 0.75rem;
+
+    @media #{$phone-width} {
+      padding-right: 1rem;
+    }
 
     .header {
       font-weight: 500;
@@ -42,7 +55,7 @@
     display: flex;
 
     .weather-gif {
-      width: 100px;
+      max-width: 100px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -58,6 +71,11 @@
 
       h1 {
         font-size: 1.5rem;
+
+        @media #{$phone-width} {
+          font-size: 1rem;
+        }
+
         white-space: nowrap;
         font-weight: 500;
         margin: 0;
@@ -72,13 +90,22 @@
   }
 
   #weather-forecast {
-    width: 600px;
+    max-width: 600px;
     margin: 1rem auto;
     padding: 0.5rem;
+
+    @media #{$phone-width} {
+      padding: 0 0.25;
+    }
 
     .daily-forecast {
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
+
+      @media #{$phone-width} {
+        font-size: 0.75rem;
+        padding: 0;
+      }
 
       cursor: pointer;
 

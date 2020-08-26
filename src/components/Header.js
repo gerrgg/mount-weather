@@ -23,7 +23,7 @@ const Header = () => {
                 icon={faCode}
                 style={{ paddingRight: ".5rem" }}
               />
-              Source Code
+              Code
             </a>
           </li>
           <li>
@@ -39,11 +39,11 @@ const Header = () => {
               rel="noopener noreferrer"
               href="https://gerrgg.github.io/resume/"
             >
-              Resume
               <FontAwesomeIcon
                 icon={faCoffee}
-                style={{ paddingLeft: ".5rem" }}
+                style={{ paddingRight: ".5rem" }}
               />
+              Resume
             </a>
           </li>
         </ul>

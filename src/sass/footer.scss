@@ -7,15 +7,26 @@
     font-size: 0.75rem;
     margin: 0;
   }
+
+  @media #{$phone-width} {
+    font-size: 0.75rem;
+  }
+
   background-color: $color-dark;
   padding: 1rem;
 
   .wrapper {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 600px;
+    max-width: 600px;
     padding: 1rem;
     margin: 1rem auto;
     display: flex;
+
+    @media #{$phone-width} {
+      display: block;
+      width: 100%;
+    }
+
     justify-content: space-between;
     align-items: center;
 
@@ -30,6 +41,13 @@
       height: 200px;
       border-right: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
+
+      @media #{$phone-width} {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding-bottom: 1rem;
+      }
 
       a {
         margin: auto;

@@ -29,6 +29,7 @@ class Form extends Component {
           name="query"
           placeholder={this.props.query}
           onChange={this.handleChange}
+          onKeyUp={this.keyHandler}
         />
         <button>
           <FontAwesomeIcon icon={faSearch} />

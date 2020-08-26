@@ -3,6 +3,10 @@
 header {
   background-color: $color-dark;
 
+  @media #{$phone-width} {
+    font-size: 0.8rem;
+  }
+
   .logo {
     display: flex;
     flex-direction: column;
@@ -19,6 +23,10 @@ header {
     margin: 0 auto;
     padding: 1rem;
 
+    @media #{$phone-width} {
+      padding: 0.25rem;
+    }
+
     ul {
       padding: 0;
       display: flex;
@@ -28,6 +36,9 @@ header {
       list-style: none;
 
       li {
+        width: 33%;
+        text-align: center;
+
         a {
           color: $color-light;
           text-decoration: none;

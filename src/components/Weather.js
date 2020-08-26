@@ -45,6 +45,8 @@ class Weather extends Component {
     /**
      * Get five day forecast weather data from OWM
      */
+    if (!coord) return;
+
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=current&appid=${this.props.apiKey}`,
       { mode: "cors" }
@@ -57,11 +59,14 @@ class Weather extends Component {
     let weatherData = await this.getCurrentWeather(query);
     let forecast = await this.getForecast(weatherData.coord);
 
-    this.setState({
-      weather: weatherData,
-      forecast: forecast,
-      hasData: true,
-    });
+    // Dont change the state if we've got issues with the query
+    if (typeof forecast !== "undefined") {
+      this.setState({
+        weather: weatherData,
+        forecast: forecast,
+        hasData: true,
+      });
+    }
   }
 
   render() {
@@ -72,7 +77,7 @@ class Weather extends Component {
           <Form handleSubmit={this.handleSubmit} query={this.props.query} />
         </div>
         {this.state.hasData ? (
-          <div>
+          <div className="content">
             <WeatherDetails data={this.state.weather} />
             <WeatherSummary data={this.state.weather} />
             <WeatherMap
