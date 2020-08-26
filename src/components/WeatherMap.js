@@ -14,12 +14,7 @@ class WeatherMap extends Component {
     const position = [this.props.lat, this.props.lon];
 
     return (
-      <Map
-        center={position}
-        zoom={this.state.zoom}
-        style={{ height: 400 }}
-        scrollWheelZoom={false}
-      >
+      <Map center={position} zoom={this.state.zoom} scrollWheelZoom={false}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
