@@ -6,6 +6,7 @@ const WeatherForecast = (props) => {
     /**
      * Gets the weeks lowest low and highest high to calculate where to place bar and how wide
      */
+
     let weeksMin = 1000;
     let weeksMax = 0;
 
@@ -19,9 +20,9 @@ const WeatherForecast = (props) => {
     return { min: weeksMin, max: weeksMax };
   };
 
-  let range = getForecastHighAndLow(props.forecast.daily);
+  let range = getForecastHighAndLow(props.forecast);
 
-  const weeklyForecast = props.forecast.daily.map((currElement, index) => {
+  const weeklyForecast = props.forecast.map((currElement, index) => {
     return (
       <DailyForecast
         key={index}

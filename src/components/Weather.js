@@ -16,8 +16,20 @@ class Weather extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  async componentDidMount() {
-    await this.getTheWeather();
+  // if user gives us coordinates, pass to get weather
+  gotGeoLocation = (location) => this.getTheWeather(location.coords);
+
+  // get weather of someplace nice - maybe have an array of "cool coordinates"
+  userDeniesGeoLocation = (e) => {
+    console.log("deny:" + e);
+  };
+
+  // either get user location consent or set a default location somewhere fun.
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      this.gotGeoLocation,
+      this.didNotGetGeoLocation
+    );
   }
 
   handleSubmit(event) {
@@ -25,8 +37,6 @@ class Weather extends Component {
      * Change query on form submit
      */
     event.preventDefault();
-    let query = event.target[1].value;
-    if (query.length) this.getTheWeather(query);
   }
 
   async getCurrentWeather(query) {
@@ -41,50 +51,71 @@ class Weather extends Component {
     return await response.json();
   }
 
-  async getForecast(coord) {
+  async getForecast(coords) {
     /**
      * Get five day forecast weather data from OWM
      */
-    if (!coord) return;
+    if (!coords) return;
 
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=current&appid=${this.props.apiKey}`,
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.latitude}&lon=${coords.latitude}&appid=${this.props.apiKey}`,
       { mode: "cors" }
     );
 
     return await response.json();
   }
 
-  async getTheWeather(query = this.props.query) {
-    let weatherData = await this.getCurrentWeather(query);
-    let forecast = await this.getForecast(weatherData.coord);
+  async getLocationDetails(coords) {
+    /**
+     * Get location information from reverse lookup on the coordinates by MapQuest API
+     */
+    if (!coords) return;
+
+    const response = await fetch(
+      `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${coords.latitude},${coords.longitude}8&includeRoadMetadata=true&includeNearestIntersection=true`,
+      { mode: "cors" }
+    );
+
+    return await response.json();
+  }
+
+  async getTheWeather(coords) {
+    let forecast = await this.getForecast(coords);
+    let location = await this.getLocationDetails(coords);
 
     // Dont change the state if we've got issues with the query
     if (typeof forecast !== "undefined") {
       this.setState({
-        weather: weatherData,
-        forecast: forecast,
+        current: forecast.current,
+        location: location.results[0].locations[0],
+        daily: forecast.daily,
+        hourly: forecast.hourly,
+        minutely: forecast.minutely,
+        coords: coords,
         hasData: true,
       });
     }
   }
 
   render() {
-    console.log(this.state.forecast);
+    console.log(this.state.location);
     return (
       <div id="weather">
         <div id="search-location">
-          <Form handleSubmit={this.handleSubmit} query={this.props.query} />
+          <Form handleSubmit={this.handleSubmit} query={this.state.location} />
         </div>
         {this.state.hasData ? (
           <div className="content">
-            <WeatherDetails data={this.state.weather} />
-            <WeatherSummary data={this.state.weather} />
-            <WeatherMap
-              lat={this.state.weather.coord.lat}
-              lon={this.state.weather.coord.lon}
+            <WeatherDetails data={this.state.current} />
+            <WeatherSummary
+              data={this.state.current}
+              today={this.state.daily[0]}
             />
-            <WeatherForecast forecast={this.state.forecast} />
+            <WeatherMap
+              lat={this.state.coords.latitude}
+              lon={this.state.coords.longitude}
+            />
+            <WeatherForecast forecast={this.state.daily} />
           </div>
         ) : null}
       </div>

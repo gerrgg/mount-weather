@@ -5,7 +5,8 @@ import { faLocationArrow, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class Form extends Component {
   constructor(props) {
-    super();
+    super(props);
+
     this.state = {};
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +30,6 @@ class Form extends Component {
           name="query"
           placeholder={this.props.query}
           onChange={this.handleChange}
-          onKeyUp={this.keyHandler}
         />
         <button>
           <FontAwesomeIcon icon={faSearch} />

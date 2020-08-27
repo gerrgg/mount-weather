@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 const WeatherDetails = (props) => {
-  const getWind = () => `${props.data.wind.speed} mph`;
-  const getHumidity = () => `${props.data.main.humidity}%`;
-  const getPressure = () => `${props.data.main.pressure} mb`;
+  const getWind = () => `${props.data.wind_speed} mph`;
+  const getHumidity = () => `${props.data.humidity}%`;
+  const getPressure = () => `${props.data.pressure} mb`;
   const getVisibility = () => `${props.data.visibility / 1000}km`;
 
   const getSunRiseOrFall = (timestamp) => moment(timestamp * 1000).format("LT");
@@ -21,12 +21,12 @@ const WeatherDetails = (props) => {
 
         <WeatherDetailComponent
           header={<FontAwesomeIcon icon={faSun} />}
-          value={getSunRiseOrFall(props.data.sys.sunrise)}
+          value={getSunRiseOrFall(props.data.sunrise)}
         />
 
         <WeatherDetailComponent
           header={<FontAwesomeIcon icon={faMoon} />}
-          value={getSunRiseOrFall(props.data.sys.sunset)}
+          value={getSunRiseOrFall(props.data.sunset)}
         />
 
         <WeatherDetailComponent header={"Visibility"} value={getVisibility()} />

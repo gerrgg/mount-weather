@@ -1,40 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import { convertTemp } from "./Helpers";
 import WeatherGif from "./WeatherGif";
 import WeatherDetailComponent from "./WeatherDetailComponent";
 
-class WeatherSummary extends Component {
-  constructor(props) {
-    super();
-  }
-
-  render() {
-    return (
-      <div id="weather-summmary">
-        <WeatherGif query={this.props.data.weather[0].main} />
-        <div className="summary-right">
-          <h1>
-            {convertTemp(this.props.data.main.temp)}{" "}
-            {this.props.data.weather[0].description}
-          </h1>
-          <div className="summary-details">
-            <WeatherDetailComponent
-              header={"Feels Like"}
-              value={convertTemp(this.props.data.main.feels_like)}
-            />
-            <WeatherDetailComponent
-              header={"Low"}
-              value={convertTemp(this.props.data.main.temp_min)}
-            />
-            <WeatherDetailComponent
-              header={"High"}
-              value={convertTemp(this.props.data.main.temp_max)}
-            />
-          </div>
+const WeatherSummary = (props) => {
+  return (
+    <div id="weather-summmary">
+      <WeatherGif query={props.data.weather[0].main} />
+      <div className="summary-right">
+        <h1>
+          {convertTemp(props.data.temp)} {props.data.weather[0].description}
+        </h1>
+        <div className="summary-details">
+          <WeatherDetailComponent
+            header={"Feels Like"}
+            value={convertTemp(props.data.feels_like)}
+          />
+          <WeatherDetailComponent
+            header={"Low"}
+            value={convertTemp(props.today.temp.min)}
+          />
+          <WeatherDetailComponent
+            header={"High"}
+            value={convertTemp(props.today.temp.max)}
+          />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default WeatherSummary;
