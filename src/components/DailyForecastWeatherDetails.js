@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 
 const DailyForecastHighAndLow = (props) => {
+  /**
+   * Get the highs and lows of a given day
+   */
   return (
     <span className="daily-high-low">
       {props.min}
@@ -14,6 +17,9 @@ const DailyForecastHighAndLow = (props) => {
 };
 
 const DailyForecastSunRiseSunSet = (props) => {
+  /**
+   * Get when the sun sets and when it rises on a given day.
+   */
   return (
     <div className="sunrise-sunset">
       <span className="sunrise">

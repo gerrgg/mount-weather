@@ -37,6 +37,9 @@ class DailyForecast extends Component {
   };
 
   handleClick = () => {
+    /**
+     * Open/close the details on click
+     */
     this.setState((prevState) => {
       return { expanded: !prevState.expanded };
     });
