@@ -3,7 +3,7 @@ import moment from "moment";
 
 const WeatherBrief = (props) => {
   const getWeatherIcon = (icon) =>
-    `http://openweathermap.org/img/wn/${icon}.png`;
+    `https://openweathermap.org/img/wn/${icon}.png`;
 
   const getDayOfWeek = (timestamp) => moment(timestamp * 1000).format("ddd");
 

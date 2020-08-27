@@ -76,7 +76,7 @@ class Weather extends Component {
     if (!coords) return;
 
     const response = await fetch(
-      `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${coords.latitude},${coords.longitude}8&includeRoadMetadata=true&includeNearestIntersection=true`,
+      `https://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.REACT_APP_MQ_KEY}&location=${coords.latitude},${coords.longitude}8&includeRoadMetadata=true&includeNearestIntersection=true`,
       { mode: "cors" }
     );
 
@@ -90,7 +90,7 @@ class Weather extends Component {
     if (!address) return;
 
     const response = await fetch(
-      `http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${address}`,
+      `https://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${address}`,
       { mode: "cors" }
     );
 
