@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cd01c575beb9766e1b0bcb7453aa7b59",
+    "revision": "169b5cb1a8beb7466a8667e255c15fc0",
     "url": "/mount-weather/index.html"
   },
   {
-    "revision": "22f4f8734fa1c6eb690c",
+    "revision": "7134ee0905b2e0bae618",
     "url": "/mount-weather/static/css/main.aa31e7f9.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mount-weather/static/js/2.d156734b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "22f4f8734fa1c6eb690c",
-    "url": "/mount-weather/static/js/main.bb34ac9a.chunk.js"
+    "revision": "7134ee0905b2e0bae618",
+    "url": "/mount-weather/static/js/main.9a1b525f.chunk.js"
   },
   {
     "revision": "fb86807f3fbd2ccdc0c2",
