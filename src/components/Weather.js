@@ -26,6 +26,10 @@ class Weather extends Component {
 
   // either get user location consent or set a default location somewhere fun.
   componentDidMount() {
+    this.askForGeolocation();
+  }
+
+  askForGeolocation() {
     navigator.geolocation.getCurrentPosition(
       this.gotGeoLocation,
       this.didNotGetGeoLocation
@@ -37,6 +41,7 @@ class Weather extends Component {
      * Change query on form submit
      */
     event.preventDefault();
+    console.log("submit");
   }
 
   async getCurrentWeather(query) {
@@ -98,11 +103,14 @@ class Weather extends Component {
   }
 
   render() {
-    console.log(this.state.location);
     return (
       <div id="weather">
         <div id="search-location">
-          <Form handleSubmit={this.handleSubmit} query={this.state.location} />
+          <Form
+            handleSubmit={this.handleSubmit}
+            handleClick={this.handleClick}
+            location={this.state.location}
+          />
         </div>
         {this.state.hasData ? (
           <div className="content">
