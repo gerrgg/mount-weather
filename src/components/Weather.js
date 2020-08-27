@@ -20,8 +20,9 @@ class Weather extends Component {
   gotGeoLocation = (location) => this.getTheWeather(location.coords);
 
   // get weather of someplace nice - maybe have an array of "cool coordinates"
-  userDeniesGeoLocation = (e) => {
-    console.log("deny:" + e);
+  doesNotHaveGeoLocation = (e) => {
+    let defaultCoords = { longitude: 32, latitude: 55 };
+    this.getTheWeather(defaultCoords);
   };
 
   // either get user location consent or set a default location somewhere fun.
@@ -32,7 +33,7 @@ class Weather extends Component {
   askForGeolocation() {
     navigator.geolocation.getCurrentPosition(
       this.gotGeoLocation,
-      this.didNotGetGeoLocation
+      this.doesNotHaveGeoLocation
     );
   }
 
