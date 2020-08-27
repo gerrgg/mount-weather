@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Form = (props) => {
+  console.log(props);
   const getFormattedLocation = () => {
     if (props.location) {
       return `${props.location.adminArea5}, ${props.location.adminArea3}, ${props.location.adminArea1}`;
@@ -13,7 +14,10 @@ const Form = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <button type="button">
-        <FontAwesomeIcon icon={faLocationArrow} onClick={props.handleClick} />
+        <FontAwesomeIcon
+          icon={faLocationArrow}
+          onClick={props.askForGeolocation}
+        />
       </button>
       <input
         id="search-bar"

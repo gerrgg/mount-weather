@@ -17,44 +17,42 @@ class Weather extends Component {
   }
 
   // if user gives us coordinates, pass to get weather
-  gotGeoLocation = (location) => this.getTheWeather(location.coords);
+  userAcceptedHTMLGeoLocation = (location) =>
+    this.getTheWeather(location.coords);
 
   // get weather of someplace nice - maybe have an array of "cool coordinates"
-  doesNotHaveGeoLocation = (e) => {
-    let defaultCoords = { longitude: 32, latitude: 55 };
+  setDefaultGeoLocation = (e) => {
+    let defaultCoords = { longitude: -84.902156, latitude: 45.40955 };
     this.getTheWeather(defaultCoords);
   };
 
   // either get user location consent or set a default location somewhere fun.
   componentDidMount() {
+    this.setDefaultGeoLocation();
     this.askForGeolocation();
   }
 
   askForGeolocation() {
-    navigator.geolocation.getCurrentPosition(
-      this.gotGeoLocation,
-      this.doesNotHaveGeoLocation
-    );
+    navigator.geolocation.getCurrentPosition(this.userAcceptedHTMLGeoLocation);
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     /**
      * Change query on form submit
      */
     event.preventDefault();
-    console.log("submit");
-  }
 
-  async getCurrentWeather(query) {
-    /**
-     * Get current weather data from OWM
-     */
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${this.props.apiKey}`,
-      { mode: "cors" }
-    );
-
-    return await response.json();
+    try {
+      let query = event.target[1].value;
+      let address = await this.getCoordinatesFromAddress(query);
+      let coords = {
+        latitude: address.results[0].locations[0].latLng.lat,
+        longitude: address.results[0].locations[0].latLng.lng,
+      };
+      this.getTheWeather(coords);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async getForecast(coords) {
@@ -71,7 +69,7 @@ class Weather extends Component {
     return await response.json();
   }
 
-  async getLocationDetails(coords) {
+  async getAddressFromCoordinates(coords) {
     /**
      * Get location information from reverse lookup on the coordinates by MapQuest API
      */
@@ -85,9 +83,26 @@ class Weather extends Component {
     return await response.json();
   }
 
+  async getCoordinatesFromAddress(address) {
+    /**
+     * Get location information from reverse lookup on the coordinates by MapQuest API
+     */
+    if (!address) return;
+
+    const response = await fetch(
+      `http://www.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MQ_KEY}&location=${address}`,
+      { mode: "cors" }
+    );
+
+    return await response.json();
+  }
+
   async getTheWeather(coords) {
+    /**
+     * Get the weather and set the state of things
+     */
     let forecast = await this.getForecast(coords);
-    let location = await this.getLocationDetails(coords);
+    let location = await this.getAddressFromCoordinates(coords);
 
     // Dont change the state if we've got issues with the query
     if (typeof forecast !== "undefined") {
@@ -109,7 +124,6 @@ class Weather extends Component {
         <div id="search-location">
           <Form
             handleSubmit={this.handleSubmit}
-            handleClick={this.handleClick}
             location={this.state.location}
           />
         </div>
