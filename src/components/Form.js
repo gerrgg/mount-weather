@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../sass/form.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow, faSearch } from "@fortawesome/free-solid-svg-icons";

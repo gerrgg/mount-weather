@@ -14,12 +14,9 @@ A simple weather app built with React - using the OpenWeatherMap API.
 
 #### Todo
 
-- Load default coords if user does not consent.
-- Setup form to get coords from human readable query (Boston, MA)
 - Allow user to switch between the two units of measurement (F & C)
 - Create a 'weather bar' using the hourly data provided by the 'one call'.
 - Integrate map with weather tile layer (thats a tough one).
-- Build a nice README.md to show off the project.
 
 #### - The Odin Project -
 
